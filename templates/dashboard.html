@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard · CoWorkHub{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2 class="page-title">Welcome, {{ current_user.username }}</h2>
+    <p class="page-subtitle">Track your bookings and manage your spaces.</p>
+</div>
+
+<section class="dashboard-section">
+    <header class="section-header">
+        <h3>Your bookings</h3>
+    </header>
+    {% if bookings %}
+        <div class="table-wrapper">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Workspace</th>
+                        <th>Rate</th>
+                        <th>Rating</th>
+                        <th>Hours</th>
+                        <th>Total</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for b in bookings %}
+                        <tr>
+                            <td>{{ b.workspace_name }}</td>
+                            <td>${{ '%.2f'|format(b.price_per_hour) }}/hr</td>
+                            <td>{% if b.rating %}★ {{ '%.1f'|format(b.rating) }}{% else %}-{% endif %}</td>
+                            <td>{{ b.hours }}</td>
+                            <td>${{ '%.2f'|format(b.total_price) }}</td>
+                            <td>{{ b.created_at }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>You don't have any bookings yet. <a href="{{ url_for('explore') }}">Browse spaces</a> to make your first booking.</p>
+    {% endif %}
+</section>
+
+<section class="dashboard-section">
+    <header class="section-header">
+        <h3>Host your own workspace</h3>
+    </header>
+    <p>Have a great space to share? List it on CoWorkHub so others can book it.</p>
+    <a href="{{ url_for('new_workspace') }}" class="btn">Add a workspace</a>
+</section>
+{% endblock %}

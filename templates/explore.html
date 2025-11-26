@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Explore workspaces · CoWorkHub{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2 class="page-title">Explore workspaces</h2>
+    <p class="page-subtitle">Browse curated spaces and book the one that fits your day.</p>
+</div>
+
+<div class="grid">
+    {% for ws in workspaces %}
+        <article class="card card-space">
+            {% if ws.image_path %}
+                <div class="card-image" style="background-image: url('{{ url_for('static', filename=ws.image_path) }}');"></div>
+            {% endif %}
+            <div class="card-body">
+                <h3>{{ ws.name }}</h3>
+                <p class="card-price">${{ '%.2f'|format(ws.price_per_hour) }}/hr</p>
+                {% if ws.rating %}
+                    <p class="card-rating">Rating: ★ {{ '%.1f'|format(ws.rating) }}</p>
+                {% else %}
+                    <p class="card-rating">No rating yet</p>
+                {% endif %}
+                <p class="card-desc">{{ ws.description or 'Flexible workspace ready when you are.' }}</p>
+                <a href="{{ url_for('workspace_detail', workspace_id=ws.id) }}" class="btn btn-primary btn-block">View &amp; book</a>
+            </div>
+        </article>
+    {% else %}
+        <p>No workspaces yet. Be the first to <a href="{{ url_for('new_workspace') }}">add one</a>.</p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %}CoWorkHub · Find your perfect workspace{% endblock %}
+
+{% block head_extra %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-98QVqE4G4iNnQze8ih/7gToYtL6vhfVqlhK/SXGEdq8np5xpoE2mR7BfrpsEmmXf7M7GXv7GxYhD2C0xQXWl0w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-text">
+        <h1 class="hero-title">Book beautiful coworking spaces in minutes.</h1>
+        <p class="hero-subtitle">Discover curated desks, meeting rooms, and focus pods for your next productive day.</p>
+        <div class="hero-actions">
+            <a href="{{ url_for('explore') }}" class="btn btn-primary hero-cta">Explore spaces</a>
+            {% if not current_user %}
+                <a href="{{ url_for('register') }}" class="btn btn-secondary">Create account</a>
+            {% endif %}
+        </div>
+        <div class="hero-meta">
+            <span>Real-time availability</span>
+            <span>Transparent pricing</span>
+            <span>Community-rated spaces</span>
+        </div>
+    </div>
+    <div class="hero-visual">
+        <div class="card-grid">
+            <div class="card card-hero">Downtown Loft Desk · $12.5/hr · ★ 4.7</div>
+            <div class="card card-hero">Creative Hub Meeting Room · $25/hr · ★ 4.5</div>
+            <div class="card card-hero">Quiet Focus Pod · $15/hr · ★ 4.9</div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block body_extra %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (window.anime) {
+            anime({
+                targets: '.hero-title',
+                translateY: [20, 0],
+                opacity: [0, 1],
+                duration: 900,
+                easing: 'easeOutQuad'
+            });
+
+            anime({
+                targets: '.hero-subtitle',
+                translateY: [20, 0],
+                opacity: [0, 1],
+                delay: 150,
+                duration: 900,
+                easing: 'easeOutQuad'
+            });
+
+            anime({
+                targets: '.hero-cta',
+                scale: [0.9, 1],
+                opacity: [0, 1],
+                delay: 250,
+                duration: 800,
+                easing: 'easeOutElastic(1, .8)'
+            });
+
+            anime({
+                targets: '.card-hero',
+                translateY: [30, 0],
+                opacity: [0, 1],
+                delay: anime.stagger(150, {start: 300}),
+                duration: 800,
+                easing: 'easeOutQuad'
+            });
+        }
+    });
+</script>
+{% endblock %}
