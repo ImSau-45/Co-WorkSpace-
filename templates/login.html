@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Login · CoWorkHub{% endblock %}
+
+{% block content %}
+<div class="auth-page">
+    <div class="auth-card">
+        <aside class="auth-left">
+            <div class="auth-brand">
+                <h1>CoWork<span>Hub</span></h1>
+                <p class="auth-tag">Find inspiring workspaces — book in minutes</p>
+            </div>
+
+            <div class="auth-illustration" aria-hidden="true">
+                <!-- simple decorative SVG -->
+                <svg width="320" height="220" viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="8" y="16" width="144" height="96" rx="10" fill="#ffffff10" stroke="#a855f720"/>
+                    <rect x="168" y="16" width="144" height="96" rx="10" fill="#ffffff08" stroke="#d946ef20"/>
+                    <rect x="40" y="130" width="240" height="64" rx="8" fill="#ffffff06" stroke="#ec489920"/>
+                </svg>
+            </div>
+
+            <ul class="auth-features">
+                <li>Instant booking</li>
+                <li>Secure payments</li>
+                <li>Trusted hosts</li>
+            </ul>
+            <div class="auth-orbs" aria-hidden="true">
+                <span class="orb small"></span>
+                <span class="orb medium"></span>
+            </div>
+        </aside>
+
+        <main class="auth-right">
+            <div class="auth-panel">
+                <h2 class="auth-title">Welcome back</h2>
+                <p class="auth-sub">Log in to continue booking your favorite spaces.</p>
+
+                <form method="post" class="auth-form">
+                    <div class="form-group">
+                        <label for="username">Username or email</label>
+                        <input type="text" id="username" name="username" required autocomplete="username">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required autocomplete="current-password">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary auth-cta">Log in</button>
+
+                    <p class="form-footnote">Don't have an account? <a href="{{ url_for('register') }}">Sign up</a></p>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}

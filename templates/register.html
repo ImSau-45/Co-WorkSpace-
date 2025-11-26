@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}Register · CoWorkHub{% endblock %}
+
+{% block content %}
+<div class="auth-page">
+    <div class="auth-card">
+        <aside class="auth-left">
+            <div class="auth-brand">
+                <h1>CoWork<span>Hub</span></h1>
+                <p class="auth-tag">Create your account and start booking.</p>
+            </div>
+
+            <div class="auth-illustration" aria-hidden="true">
+                <svg width="320" height="220" viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="8" y="16" width="144" height="96" rx="10" fill="#ffffff08" stroke="#a855f720"/>
+                    <rect x="168" y="16" width="144" height="96" rx="10" fill="#ffffff06" stroke="#d946ef20"/>
+                    <rect x="40" y="130" width="240" height="64" rx="8" fill="#ffffff05" stroke="#ec489920"/>
+                </svg>
+            </div>
+
+            <ul class="auth-features">
+                <li>Verified hosts</li>
+                <li>Secure payments</li>
+                <li>Flexible hours</li>
+            </ul>
+
+            <div class="auth-orbs" aria-hidden="true">
+                <span class="orb small"></span>
+                <span class="orb large"></span>
+            </div>
+        </aside>
+
+        <main class="auth-right">
+            <div class="auth-panel">
+                <h2 class="auth-title">Create your account</h2>
+                <p class="auth-sub">Sign up to discover and book spaces instantly.</p>
+
+                <form method="post" class="auth-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required autocomplete="username">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required autocomplete="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required autocomplete="new-password">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm">Confirm password</label>
+                        <input type="password" id="confirm" name="confirm" required autocomplete="new-password">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary auth-cta">Sign up</button>
+
+                    <p class="form-footnote">Already have an account? <a href="{{ url_for('login') }}">Log in</a></p>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}

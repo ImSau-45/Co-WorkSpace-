@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block title %}{{ workspace.name }} · CoWorkHub{% endblock %}
+
+{% block content %}
+<article class="workspace-detail">
+    <header class="workspace-header">
+        <div>
+            <h2 class="page-title">{{ workspace.name }}</h2>
+            <p class="workspace-meta">
+                <span class="badge">${{ '%.2f'|format(workspace.price_per_hour) }}/hr</span>
+                {% if workspace.rating %}
+                    <span class="badge badge-soft">★ {{ '%.1f'|format(workspace.rating) }} rating</span>
+                {% endif %}
+            </p>
+        </div>
+    </header>
+
+    <div class="workspace-layout">
+        <div class="workspace-main">
+            {% if workspace.image_path %}
+                <div class="workspace-image" style="background-image: url('{{ url_for('static', filename=workspace.image_path) }}');"></div>
+            {% endif %}
+            <p class="workspace-description">{{ workspace.description or 'A flexible, well-equipped workspace for modern teams and individuals.' }}</p>
+        </div>
+        <aside class="workspace-sidebar">
+            <h3>Book this space</h3>
+            <p class="sidebar-note">Rate: <strong>${{ '%.2f'|format(workspace.price_per_hour) }}/hr</strong></p>
+            {% if not current_user %}
+                <p><a href="{{ url_for('login', next=request.path) }}">Log in</a> to book this workspace.</p>
+            {% else %}
+                <form method="post" class="form-card">
+                    <div class="form-group">
+                        <label for="booking_date">Select date</label>
+                        <input type="date" id="booking_date" name="booking_date" required
+                               value="{{ datetime.utcnow().date().isoformat() }}"
+                               min="{{ datetime.utcnow().date().isoformat() }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="start_time">Start time (hourly)</label>
+                        <input type="time" id="start_time" name="start_time" required step="3600" value="09:00" min="06:00" max="22:00">
+                        <small class="form-footnote">Pick an hourly start time (e.g. 09:00).</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="hours">Number of hours</label>
+                        <input type="number" id="hours" name="hours" min="1" value="1" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Confirm booking</button>
+                </form>
+            {% endif %}
+        </aside>
+    </div>
+</article>
+<section class="reviews-section container">
+    <header class="section-header">
+        <h3>Reviews</h3>
+    </header>
+    {% if reviews and reviews|length > 0 %}
+        <div class="reviews-list">
+            {% for r in reviews %}
+                <div class="testimonial-card">
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <strong>{{ r.username or 'User' }}</strong>
+                            <div class="testimonial-stars">{% for i in range(r.rating) %}★{% endfor %}</div>
+                        </div>
+                        <div class="testimonial-date">{{ r.created_at }}</div>
+                    </div>
+                    {% if r.comment %}
+                        <p class="testimonial-text">{{ r.comment }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No reviews yet — be the first to review this space.</p>
+    {% endif %}
+
+    {% if current_user %}
+        <div style="margin-top:1rem;">
+            <h4>Write a review</h4>
+            <form method="post" action="{{ url_for('submit_review', workspace_id=workspace.id) }}" class="form-card">
+                <div class="form-group">
+                    <label for="rating">Rating</label>
+                    <select id="rating" name="rating" required>
+                        <option value="5">5 - Excellent</option>
+                        <option value="4">4 - Very good</option>
+                        <option value="3">3 - Good</option>
+                        <option value="2">2 - Fair</option>
+                        <option value="1">1 - Poor</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="comment">Comment</label>
+                    <textarea id="comment" name="comment" rows="3" placeholder="Share your experience (optional)"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit review</button>
+            </form>
+        </div>
+    {% else %}
+        <p><a href="{{ url_for('login', next=request.path) }}">Log in</a> to leave a review.</p>
+    {% endif %}
+</section>
+{% endblock %}

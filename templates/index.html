@@ -1,0 +1,389 @@
+{% extends 'base.html' %}
+{% block title %}CoWorkHub · Find your perfect workspace{% endblock %}
+
+{% block head_extra %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-98QVqE4G4iNnQze8ih/7gToYtL6vhfVqlhK/SXGEdq8np5xpoE2mR7BfrpsEmmXf7M7GXv7GxYhD2C0xQXWl0w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{% endblock %}
+
+{% block content %}
+<!-- Animated background -->
+<div class="animated-background">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+    <div class="stars"></div>
+    <div class="asteroids-container"></div>
+</div>
+
+<section class="hero">
+    <div class="hero-text">
+        <div class="welcome-badge">🚀 Welcome to CoWorkHub</div>
+        <h1 class="hero-title">Book beautiful coworking spaces in minutes.</h1>
+        <p class="hero-subtitle">Discover curated desks, meeting rooms, and focus pods for your next productive day. Find your perfect workspace and boost your productivity today.</p>
+        <div class="hero-actions">
+            <a href="{{ url_for('explore') }}" class="btn btn-primary hero-cta">
+                <span>✨ Explore Spaces</span>
+            </a>
+            {% if not current_user %}
+                <a href="{{ url_for('register') }}" class="btn btn-secondary">Create account</a>
+            {% endif %}
+        </div>
+        <!-- <div class="hero-meta">
+            <span>⚡ Real-time availability</span>
+            <span>💰 Transparent pricing</span>
+            <span>⭐ Community-rated spaces</span>
+        </div> -->
+    </div>
+    <div class="hero-visual">
+        <div class="hero-illustration" aria-hidden="true">
+            <!-- Decorative illustration area (CSS shapes) -->
+            <div class="floating-cards">
+                <div class="card card-hero">Downtown Loft Desk · $12.5/hr · ★ 4.7</div>
+                <div class="card card-hero">Creative Hub Meeting Room · $25/hr · ★ 4.5</div>
+                <div class="card card-hero">Quiet Focus Pod · $15/hr · ★ 4.9</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Why Choose CoWorkHub?</h2>
+            <p class="section-subtitle">Everything you need to work productively</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏢</div>
+                <h3>Handpicked Spaces</h3>
+                <p>Curated coworking spaces from the best locations in your city</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⏰</div>
+                <h3>Instant Booking</h3>
+                <p>Book your workspace in seconds with real-time availability</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💳</div>
+                <h3>Flexible Payment</h3>
+                <p>Pay hourly, daily, or monthly - whatever works for you</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Community</h3>
+                <p>Connect with professionals and network in shared spaces</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔐</div>
+                <h3>Secure & Private</h3>
+                <p>Professional environment with privacy and security included</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⭐</div>
+                <h3>Top Rated</h3>
+                <p>All spaces verified and rated by our community members</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="how-works-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Get started in 3 simple steps</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Search & Explore</h3>
+                <p>Browse available workspaces in your preferred location and check real-time availability</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Pick & Book</h3>
+                <p>Choose your ideal space and book instantly with flexible pricing options</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Work & Enjoy</h3>
+                <p>Settle in, be productive, and enjoy a professional working environment</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">What Our Users Say</h2>
+            <p class="section-subtitle">Join thousands of satisfied professionals</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"CoWorkHub made it so easy to find the perfect workspace. The process is smooth and the spaces are amazing!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👤</div>
+                    <div>
+                        <p class="author-name">Sarah Chen</p>
+                        <p class="author-role">Freelance Designer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"Best decision for my remote work setup. Great atmosphere, reliable service, and fantastic community!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👤</div>
+                    <div>
+                        <p class="author-name">Mike Johnson</p>
+                        <p class="author-role">Startup Founder</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"The flexibility and quality of spaces available are unmatched. Highly recommended for professionals!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👤</div>
+                    <div>
+                        <p class="author-name">Emma Wilson</p>
+                        <p class="author-role">Marketing Manager</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Ready to Find Your Perfect Workspace?</h2>
+            <p>Join thousands of professionals already using CoWorkHub to boost their productivity</p>
+            <div class="cta-buttons">
+                <a href="{{ url_for('explore') }}" class="btn btn-primary">Start Exploring</a>
+                {% if not current_user %}
+                    <a href="{{ url_for('register') }}" class="btn btn-secondary">Sign Up Now</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block body_extra %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Create animated stars in background
+        const starsContainer = document.querySelector('.stars');
+        if (starsContainer) {
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = Math.random() * 2 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.opacity = Math.random() * 0.7 + 0.3;
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Create falling asteroids
+        const asteroidsContainer = document.querySelector('.asteroids-container');
+        if (asteroidsContainer) {
+            const createAsteroid = () => {
+                const asteroid = document.createElement('div');
+                asteroid.className = 'asteroid';
+                
+                const size = Math.random() * 15 + 5; // 5px to 20px
+                const duration = Math.random() * 8 + 6; // 6s to 14s
+                const startX = Math.random() * 100;
+                const sway = (Math.random() - 0.5) * 150; // Random horizontal movement
+                
+                asteroid.style.width = size + 'px';
+                asteroid.style.height = size + 'px';
+                asteroid.style.left = startX + '%';
+                asteroid.style.top = '-30px';
+                asteroid.style.animationDuration = duration + 's';
+                asteroid.style.setProperty('--sway', sway + 'px');
+                asteroid.style.animationDelay = Math.random() * 2 + 's';
+                asteroid.style.opacity = Math.random() * 0.6 + 0.4;
+                
+                asteroidsContainer.appendChild(asteroid);
+                
+                // Remove asteroid after animation completes
+                setTimeout(() => {
+                    asteroid.remove();
+                }, (duration + 2) * 1000);
+            };
+            
+            // Create asteroids continuously
+            setInterval(createAsteroid, 300);
+            
+            // Create initial batch
+            for (let i = 0; i < 5; i++) {
+                setTimeout(createAsteroid, i * 200);
+            }
+        }
+
+        if (window.anime) {
+            // Welcome badge animation
+            anime({
+                targets: '.welcome-badge',
+                translateY: [20, 0],
+                opacity: [0, 1],
+                duration: 800,
+                easing: 'easeOutQuad'
+            });
+
+            // Title animation with scale
+            anime({
+                targets: '.hero-title',
+                translateY: [30, 0],
+                opacity: [0, 1],
+                duration: 1000,
+                delay: 100,
+                easing: 'easeOutQuad'
+            });
+
+            // Subtitle animation
+            anime({
+                targets: '.hero-subtitle',
+                translateY: [30, 0],
+                opacity: [0, 1],
+                delay: 200,
+                duration: 1000,
+                easing: 'easeOutQuad'
+            });
+
+            // CTA button animation with bounce
+            anime({
+                targets: '.hero-cta',
+                scale: [0.9, 1],
+                opacity: [0, 1],
+                delay: 350,
+                duration: 800,
+                easing: 'easeOutElastic(1, .8)'
+            });
+
+            // Secondary button animation
+            anime({
+                targets: '.btn-secondary',
+                scale: [0.9, 1],
+                opacity: [0, 1],
+                delay: 400,
+                duration: 800,
+                easing: 'easeOutElastic(1, .8)'
+            });
+
+            // Card animations with stagger
+            anime({
+                targets: '.card-hero',
+                translateY: [40, 0],
+                opacity: [0, 1],
+                delay: anime.stagger(150, {start: 450}),
+                duration: 900,
+                easing: 'easeOutQuad'
+            });
+
+            // Meta badges animation
+            anime({
+                targets: '.hero-meta span',
+                scale: [0.8, 1],
+                opacity: [0, 1],
+                delay: anime.stagger(100, {start: 600}),
+                duration: 700,
+                easing: 'easeOutQuad'
+            });
+
+            // Hero section fade-in
+            anime({
+                targets: '.hero',
+                opacity: [0.7, 1],
+                duration: 1300,
+                easing: 'easeOutQuad'
+            });
+
+            // Scroll animations for sections
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Feature cards animation
+                        if (entry.target.classList.contains('features-grid')) {
+                            anime({
+                                targets: '.feature-card',
+                                translateY: [40, 0],
+                                opacity: [0, 1],
+                                duration: 800,
+                                delay: anime.stagger(100),
+                                easing: 'easeOutQuad'
+                            });
+                        }
+                        // Steps animation
+                        if (entry.target.classList.contains('steps-grid')) {
+                            anime({
+                                targets: '.step-card',
+                                translateY: [40, 0],
+                                opacity: [0, 1],
+                                duration: 800,
+                                delay: anime.stagger(100),
+                                easing: 'easeOutQuad'
+                            });
+                        }
+                        // Testimonials animation
+                        if (entry.target.classList.contains('testimonials-grid')) {
+                            anime({
+                                targets: '.testimonial-card',
+                                translateY: [40, 0],
+                                opacity: [0, 1],
+                                duration: 800,
+                                delay: anime.stagger(100),
+                                easing: 'easeOutQuad'
+                            });
+                        }
+                        // Section headers animation
+                        if (entry.target.classList.contains('section-header')) {
+                            anime({
+                                targets: entry.target,
+                                translateY: [20, 0],
+                                opacity: [0, 1],
+                                duration: 800,
+                                easing: 'easeOutQuad'
+                            });
+                        }
+                        // CTA content animation
+                        if (entry.target.classList.contains('cta-content')) {
+                            anime({
+                                targets: entry.target,
+                                scale: [0.95, 1],
+                                opacity: [0, 1],
+                                duration: 900,
+                                easing: 'easeOutQuad'
+                            });
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all scrollable sections
+            document.querySelectorAll('.features-grid, .steps-grid, .testimonials-grid, .section-header, .cta-content').forEach(el => {
+                observer.observe(el);
+            });
+        }
+    });
+</script>
+{% endblock %}
